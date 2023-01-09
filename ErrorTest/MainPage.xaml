@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ErrorTest.MainPage">
+    <StackLayout HeightRequest="100">
+        <ScrollView Orientation="Horizontal">
+            <StackLayout Orientation="Horizontal" Spacing="6" x:Name="stack" Margin="5,3,3,0">
+                <Button Text="Image" 
+                                Command="{Binding PickImageCommand, Mode=OneTime}"
+                                CommandParameter="{Binding Source={RelativeSource Self}}"/>
+                <StackLayout Margin="0"
+                         Spacing="6"
+                         Orientation="Horizontal"
+                         BindableLayout.ItemsSource="{Binding SelectedItems}"
+                         BindableLayout.EmptyView="No achievements">
+
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <ContentView Padding="0,8">
+                                <Grid>
+                                    <AbsoluteLayout>
+                                        <Image Source="{Binding CombineDeleteMarkImage}"
+                                                            WidthRequest="80"
+                                                            HeightRequest="80"
+                                                            VerticalOptions="Center"
+                                                            HorizontalOptions="Center" />
+
+                                        <BoxView  AbsoluteLayout.LayoutBounds="1,0,0.3,0.3"
+                                                  AbsoluteLayout.LayoutFlags="All"
+                                                  Color="Transparent">
+                                            <BoxView.GestureRecognizers>
+                                                <TapGestureRecognizer
+                                                                Command="{Binding BoxViewTapCommand}"
+                                                                />
+                                            </BoxView.GestureRecognizers>
+                                        </BoxView>
+                                    </AbsoluteLayout>
+                                </Grid>
+                                <ContentView.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                                    Command="{Binding ImageTapGestureCommand}"/>
+                                </ContentView.GestureRecognizers>
+                            </ContentView>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+
+
+            </StackLayout>
+        </ScrollView>
+    </StackLayout>
+
+</ContentPage>
